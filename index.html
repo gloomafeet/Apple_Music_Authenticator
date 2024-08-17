@@ -14,10 +14,14 @@
                         }
                     });
 
-                    music.authorize().then(function(musicUserToken) {
+                        music.authorize().then(function(musicUserToken) {
                         console.log('Authorization successful, token: ' + musicUserToken);
+                
                         // Send the token back to the app
                         window.location.href = 'callback://?token=' + musicUserToken;
+                
+                        // Also send a message to the Flutter console
+                        window.flutter_inappwebview.callHandler('printToConsole', musicUserToken);
                     }).catch(function(error) {
                         console.log('Authorization failed', error);
                     });
